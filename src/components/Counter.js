@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
-  const [number, setNumber] = useState(1);
+const Counter = ({ number, onChangeNumber }) => {
+  const [count, setCount] = React.useState(0);
 
   const addClick = () => {
-    setCount(count + Number(number));
+    setCount(count + number);
   };
 
   const subtraction = () => {
-    setCount(count - Number(number));
+    setCount(count - number);
   };
 
-  const changeNumber = (e) => {
-    setNumber(e.target.value);
-  };
+  const handleInputChange = (e) => {
+    const value = Number(e.target.value);
+    onChangeNumber(value);
+  }
 
   return (
     <div className='content'>
-      <h1>Counter</h1>
+      <h1>Counter App</h1>
       <div className='count'>
         <span>{count}</span>
       </div>
@@ -28,7 +28,7 @@ const Counter = () => {
         <input
           type='number'
           value={number}
-          onChange={changeNumber}
+          onChange={handleInputChange}
           className='buttons'
         />
       </div>
