@@ -1,46 +1,27 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import Counter from './components/Counter';
 
+const App = () => {
+  const [initialNumber, setInitialNumber] = useState(1);
 
-export default function App(){
-  return(
-    <div class = 'App'>
-      <Counter />
-    </div>
-  );
-}
+  const handleInputChange = (e) => {
+    setInitialNumber(Number(e.target.value));
+  };
 
-function Counter (){
-  const [count, setCount] = useState(0);
-  const [number, setNumber] = useState(1); 
-
-  function addClick() {
-    setCount(count + Number(number));
-  }
-
-  function subtraction(){
-    setCount(count - Number(number));
-  }
-  
-  function changeNumber(e){
-    setNumber((e.target.value));
-  }
-
-  return(
-    <div>
-      <h1>Counter App</h1>
-      <div className ='count'>
-       <span>{count}</span>
-      </div>
-      <div>
-        <button className='buttons' onClick={addClick}>+</button>
-        <button className='buttons' onClick={subtraction}>-</button>
-        <input
+  return (
+    
+    <div className='App'>
+      <Counter initialNumber={initialNumber} />
+      <input
         type='number'
-        value={number}
-        onChange={changeNumber}
-        />
-      </div>
+        value={initialNumber}
+        onChange={handleInputChange}
+        className='buttons'
+      />
+      
     </div>
   );
-}
+};
+
+export default App;
